@@ -1,0 +1,6 @@
+pointer movement    = ">" | "<" ;
+memory modification = "-" | "+" ;
+IO instruction      = "." | "," ;
+repeat              = "[" , block , "]" ;
+instruction         = pointer movement | memory modification | IO instruction | repeat ;
+block               = { instruction } ;
