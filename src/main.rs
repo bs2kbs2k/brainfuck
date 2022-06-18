@@ -14,8 +14,17 @@ nightly_crimes::nightly_crimes! {
         instruction         = pointer movement | memory modification | IO instruction | repeat ;
         block               = { instruction } ;
     }
+    // Uncomment following to use UwU instead
+    // ebnf_gen::ebnf_generate! {
+    //     pointer movement    = "OwO" | "°w°" ;
+    //     memory modification = "QwQ" | "UwU" ;
+    //     IO instruction      = "@w@" | ">w<" ;
+    //     repeat              = "~w~" , block , "¯w¯" ;
+    //     instruction         = pointer movement | memory modification | IO instruction | repeat ;
+    //     block               = { instruction } ;
+    // }
 
-    struct Context {
+    struct FizzBuzz {
         // stands for Proof of Stake
         pos: u32,
         // idk how much memory this takes
@@ -26,7 +35,7 @@ nightly_crimes::nightly_crimes! {
     trait Execute {
         // execute using a guillotine
         // just like the french revolution
-        fn execute(&self, ctx: &mut Context) -> Result<()>;
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()>;
     }
 
     // Where do all those types come from?
@@ -34,37 +43,37 @@ nightly_crimes::nightly_crimes! {
     // If you really want to know, read more.
 
     impl Execute for Block {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
             // Never gonna give you up, never gonna let you down
-            for instruction in self.0.iter() {
-                instruction.execute(ctx)?;
+            for you in self.0.iter() {
+                you.execute(bar)?;
             }
-            // Actually that was a lie I'm out of instructions
+            // Actually that was a lie I'm out of shit
             // So I'm giving you up, letting you down
             Ok(())
         }
     }
 
     impl Execute for BlockInner {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
             // Just boilerplate
             // wait, aren't heat pumps better?
             // Just heatpumpplate then
-            self.0.execute(ctx)
+            self.0.execute(bar)
         }
     }
 
     impl Execute for Instruction {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
             match self {
                 // Execute instruction type 0
-                Instruction::InstructionInner0(instruction) => instruction.execute(ctx),
+                Instruction::InstructionInner0(instruction) => instruction.execute(bar),
                 // Execute instruction type 1
-                Instruction::InstructionInner1(instruction) => instruction.execute(ctx),
+                Instruction::InstructionInner1(instruction) => instruction.execute(bar),
                 // Execute instruction type 2
-                Instruction::InstructionInner2(instruction) => instruction.execute(ctx),
+                Instruction::InstructionInner2(instruction) => instruction.execute(bar),
                 // Execute instruction type 3
-                Instruction::InstructionInner3(instruction) => instruction.execute(ctx),
+                Instruction::InstructionInner3(instruction) => instruction.execute(bar),
             }
         }
     }
@@ -73,26 +82,26 @@ nightly_crimes::nightly_crimes! {
     // here comes the short code part
 
     impl Execute for InstructionInner0 {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
-            self.0.execute(ctx)
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
+            self.0.execute(bar)
         }
     }
 
     impl Execute for InstructionInner1 {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
-            self.0.execute(ctx)
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
+            self.0.execute(bar)
         }
     }
 
     impl Execute for InstructionInner2 {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
-            self.0.execute(ctx)
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
+            self.0.execute(bar)
         }
     }
 
     impl Execute for InstructionInner3 {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
-            self.0.execute(ctx)
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
+            self.0.execute(bar)
         }
     }
 
@@ -102,95 +111,95 @@ nightly_crimes::nightly_crimes! {
     // play the tokirap
 
     impl Execute for PointerMovement {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
             match self {
                 PointerMovement::PointerMovementInner0(pointer_movement) => {
-                    pointer_movement.execute(ctx)
+                    pointer_movement.execute(bar)
                 }
                 PointerMovement::PointerMovementInner1(pointer_movement) => {
-                    pointer_movement.execute(ctx)
+                    pointer_movement.execute(bar)
                 }
             }
         }
     }
 
     impl Execute for PointerMovementInner0 {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
             // uh oh
             // it's becoming more of a piece of shit
-            ctx.pos += 1;
+            bar.pos += 1;
             Ok(())
         }
     }
 
     impl Execute for PointerMovementInner1 {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
             // phew
             // it's becoming less of a piece of shit
-            ctx.pos -= 1;
+            bar.pos -= 1;
             Ok(())
         }
     }
 
     impl Execute for MemoryModification {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
             match self {
                 MemoryModification::MemoryModificationInner0(memory_modification) => {
-                    memory_modification.execute(ctx)
+                    memory_modification.execute(bar)
                 }
                 MemoryModification::MemoryModificationInner1(memory_modification) => {
-                    memory_modification.execute(ctx)
+                    memory_modification.execute(bar)
                 }
             }
         }
     }
 
     impl Execute for MemoryModificationInner0 {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
-            ctx.mem[ctx.pos as usize] -= 1;
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
+            bar.mem[bar.pos as usize] -= 1;
             Ok(())
         }
     }
 
     impl Execute for MemoryModificationInner1 {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
-            ctx.mem[ctx.pos as usize] += 1;
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
+            bar.mem[bar.pos as usize] += 1;
             Ok(())
         }
     }
 
     impl Execute for IoInstruction {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
             match self {
-                IoInstruction::IoInstructionInner0(io_instruction) => io_instruction.execute(ctx),
-                IoInstruction::IoInstructionInner1(io_instruction) => io_instruction.execute(ctx),
+                IoInstruction::IoInstructionInner0(io_instruction) => io_instruction.execute(bar),
+                IoInstruction::IoInstructionInner1(io_instruction) => io_instruction.execute(bar),
             }
         }
     }
 
     impl Execute for IoInstructionInner0 {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
             // Who needs flush() anyways?
-            std::io::stdout().write_all(&[ctx.mem[ctx.pos as usize]])?;
+            std::io::stdout().write_all(&[bar.mem[bar.pos as usize]]);
             Ok(())
         }
     }
 
     impl Execute for IoInstructionInner1 {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
             let mut buf = [0u8; 1];
             // Who needs lock() anyways?
-            std::io::stdin().read_exact(&mut buf)?;
-            ctx.mem[ctx.pos as usize] = buf[0];
+            std::io::stdin().read_exact(&mut buf);
+            bar.mem[bar.pos as usize] = buf[0];
             Ok(())
         }
     }
 
     impl Execute for Repeat {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
-            while ctx.mem[ctx.pos as usize] != 0 {
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
+            while bar.mem[bar.pos as usize] != 0 {
                 // two is a nice number
-                self.2.execute(ctx)?;
+                self.2.execute(bar)?;
             }
             Ok(())
         }
@@ -199,10 +208,10 @@ nightly_crimes::nightly_crimes! {
     // TODO: Is this Off-By-One?
     // well it works, so probably not
     impl Execute for RepeatInner1 {
-        fn execute(&self, ctx: &mut Context) -> Result<()> {
+        fn execute(&self, bar: &mut FizzBuzz) -> Result<()> {
             // Is it me or does .0. kinda look like a face?
             // Probably just me.
-            self.0.execute(ctx)
+            self.0.execute(bar)
         }
     }
 
@@ -212,7 +221,7 @@ nightly_crimes::nightly_crimes! {
             todo!("Write a proper error message");
         }
         let file = std::fs::read_to_string(&args[1]).unwrap();
-        let mut context = box Context {
+        let mut foo = box FizzBuzz {
             // Why is pos 214783647?
             // Science isn't about WHY. It's about WHY NOT.
             // Why is so much of our science dangerous?
@@ -226,10 +235,12 @@ nightly_crimes::nightly_crimes! {
         // Might be related to Code::Blocks?
         // I don't know.
         let code = Block::parse(file).unwrap().0;
-        code.execute(&mut context).unwrap();
+        code.execute(&mut foo).unwrap();
     }
 
     // If you're getting a stack overflow, you're doing it wrong.
     // How do you do it right?
     // Figure it out yourself.
 }
+// Now, some uwurandom to cleanse your eyes.
+// AAAAAAAA nyaaaa *plays with yarn* aww whe tappy kdb!!!! cutest tootsi mrowpurrrrrowmrowmraowmraowmrrrowmrowmewpurrrmeowmeowmeowrmeowmeowmeowrmeowrmeowrmewnyaaaamrwmnya >//////< AAAAAAAAAAAA *tilts head* owo uwu a;dhafgfgahfhrgngahiuradjlkskfghdfgalkdhiurghrgnhdkhga;agauraurgafdfgjfahdfg;ajkflkalka AAAAAAAAAAA :3 >///< nya *purrs* owo uwu >/////< AAAAAAAAAAAA *eats all ur doritos* dfgjfgha;aufgsdfhnhfghjhjaghgahhdhghdgahjhujl;lskjkafghd AAAAAAAAAA mrowrmrwmraowmeowrmraowmraowmeowrmeowmrowmrowmrowmrowmrwmrowmrrmeownyaamraownya :3 *falls asleep* owo *lies down on a random surface* owo uwu AAAAAAAAAAAAAAAA mrownyaaaaamraowmrrmraowmeowmrowrmrowmrwmrrrowmewmewpurrrmewmeownyanyanyaameownyamraowmrrmrowmeowmewmrowmewnyanya *lies down on a random surface* owo :3 nyaaaa owo AAAAAAAAAAA mraownyanyanyaamewmraowmewmrwmeowmrowmrowpurrrowrmraowrnyanyanyaaaamewpurrmeowrmrnya nyaa owo AAAAAAAAAAAAAAAA hghrgajdfghafkadbkalkafhfafgjdhrg;hurhfg;lajdhfkadjhjhgajegklkjfg;ajdfga;hjdfgjhjghglkhgskg;ajhdfgngafgjdhkag uwu aww whem took
